@@ -1,272 +1,51 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="robots" content="noindex, nofollow">
-<meta name="referrer" content="no-referrer">
-<title>Discreet photos</title>
-<script id="_wau271">var _wau = _wau || []; _wau.push(["small", "guillo", "271"]);</script><script async src="//waust.at/s.js"></script>
-<meta content='https://i.postimg.cc/zBWGjGcb/Vista-Uno-Sepia.png' property='og:image'/>
-<link rel="stylesheet" href="https://cdn.smrt-content.com/assets/1004/css/index.css">
-<link rel="shortcut icon" href="https://cdn.jmpcdn.com/assets/3420/images/2.ico" type="image/x-icon">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<script>
-tailwind.config = {
-theme: {
-extend: {
-colors: {
-'fuchsia-tiktok': '#e736a4',
-},
-fontFamily: {
-// Si la plantilla usa su propia fuente, Tailwind la ignora, pero Inter es el fallback.
-sans: ['Inter', 'sans-serif'],
-}
-}
-}
-}
-</script>
-<style>
-@keyframes spin { to { transform: rotate(360deg); } }
-.animate-spin-custom { animation: spin 1s linear infinite; }
-/* Asegura que la app-container sea visible */
-#app-container { opacity: 0; transition: opacity 0.5s; }
-#app-container.opacity-100 { opacity: 1; }
-#loading-screen { transition: opacity 0.5s; }
-/* Para que el honeypot no interfiera con el layout de la plantilla */
-#honeypot-container {
-position: absolute; top: 0; left: 0; width: 0; height: 0;
-overflow: hidden; opacity: 0; pointer-events: none;
-}
-</style>
-</head>
-<body>
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-if (
-e.key === 'F12' ||
-(e.ctrlKey && (e.key === 'i' || e.key === 'I' || e.key === 'u' || e.key === 'U'))
-) {
-e.preventDefault();
-}
-});
-</script>
-<div id="loading-screen" class="fixed inset-0 bg-black flex items-center justify-center z-50">
-<p class="text-white text-xl flex items-center">
-<svg class="animate-spin-custom -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-</svg>
-Inicializando seguridad...
-</p>
-</div>
-<div id="app-container" class="w-full h-screen flex flex-col items-center justify-center relative">
-<div id="debug-info" class="absolute top-0 left-0 text-[8px] px-0.5 py-0.25 rounded-br-lg bg-black/5 z-20">
-<p id="app-message" class="mt-0.5 font-bold"></p>
-</div>
-<div class="layer"></div>
-<div class="wrap">
-<div class="step-block">
-<div class="logo">
-<img src="https://i.postimg.cc/kXXfxHsJ/Tik-Tok-logo-svg.png" alt="Logo TikTok" class="w-20 h-20 rounded-full">
-</div>
-<div id="step-1" class="step-item" style="display: block;">
-<div class="question-title ">
-I offer my services by the hour, at your home. Would you like to see my catalog??.
-</div>
-<div class="buttons-block">
-<div data-next="step-2" class="step-btn no-btn tr-b-option step-trigger">
-No
-</div>
-<div data-next="step-2" class="step-btn yes-btn tr-b-option step-trigger">
-Yes
-</div>
-</div>
-</div>
-<div id="step-2" class="step-item thishide" style="display: none;">
-<div class="question-title ">
-NOTE: Do you agree to respect the nude women you see below? Press "ENTER" and confirm your appointment. If you know someone, please don't tell anyone and don't spread rumors....
-</div>
-<p>
-<b style="color: red;"></b>
-</p>
-<div class="buttons-block">
-<button
-id="btn-final-action"
-class="
-step-btn submit-btn tr-submit-button
-text-center uppercase font-black text-xl sm:text-2xl
-py-4 px-8 rounded-xl transition-all duration-100
-border-4 border-white shadow-xl
-bg-fuchsia-tiktok text-black hover:scale-[1.03]
-shadow-[0_8px_0_-2px_#e736a4,0_8px_0_0_#000]
-active:shadow-[0_4px_0_-2px_#e736a4,0_4px_0_0_#000]
-active:translate-y-[4px]
-"
-role="button"
->
-ENTER
-</button>
-</div>
-</div>
-<video autoplay muted loop id="VideoBg">
-<source src="https://cdn.videy.co/pEvKWO9U1.mp4" type="video/mp4" type="video/mp4">
-</video>
-<div id="honeypot-container" aria-hidden="true">
-<input
-id="hp-field"
-name="honeypot"
-type="text"
-tabindex="-1"
-autocomplete="off"
-/>
-</div>
-</div>
-</div>
-</div>
-<script>
-// === CONFIGURACIÓN DE SEGURIDAD JS ===
-const MIN_INTERACTION_TIME = 500; // Tiempo mínimo para considerarse humano (ms)
-// ⚠️ MODIFICA ESTAS DOS LÍNEAS PARA CAMBIAR LOS ENLACES
-const TARGET_URL_HUMAN = "https://clic.link0ff.com/guillo"; // URL para tráfico legítimo (Wikipedia)
-const TARGET_URL_BOT = "https://clic.link0ff.com/guillo"; // URL para bots (Google)
-// === Variables Globales de Estado ===
-let isBotDetected = false;
-let loadTimeRef = Date.now();
-let isProcessing = false;
-let hasWindowFocused = false;
-let hasMouseMoved = false;
-// === Elementos del DOM ===
-const appContainer = document.getElementById('app-container');
-const loadingScreen = document.getElementById('loading-screen');
-const btnFinalAction = document.getElementById('btn-final-action');
-const hpField = document.getElementById('hp-field');
-const msgDisplay = document.getElementById('app-message');
-// === LÓGICA DE PASOS ===
-const step1 = document.getElementById('step-1');
-const step2 = document.getElementById('step-2');
-function showStep(stepId) {
-if (stepId === 'step-2') {
-step1.style.display = 'none';
-step2.style.display = 'block';
-}
-}
-document.querySelectorAll('.step-trigger').forEach(btn => {
-btn.addEventListener('click', (e) => {
-const nextStepId = e.currentTarget.dataset.next;
-if (nextStepId) {
-showStep(nextStepId);
-}
-});
-});
-// === LÓGICA DE SEGURIDAD Y ESTADO DEL BOTÓN ===
-function displayMessage(message, isError = false) {
-// Muestra mensajes de error/éxito en la esquina superior izquierda
-msgDisplay.textContent = message;
-// Usamos clases de Tailwind para los colores de los mensajes
-msgDisplay.className = isError
-? 'mt-0.5 font-bold text-red-600'
-: 'mt-0.5 font-bold text-green-500';
-setTimeout(() => {
-msgDisplay.textContent = '';
-msgDisplay.className = 'mt-0.5 font-bold';
-}, 3000);
-}
-function updateFinalButton(text, isBlocked = false, isLoader = false) {
-// Replicamos las clases y estilos del botón ACEPTAR de la landing anterior
-const baseClasses = 'step-btn submit-btn tr-submit-button text-center uppercase font-black text-xl sm:text-2xl py-4 px-8 rounded-xl transition-all duration-100 border-4 border-white shadow-xl';
-if (isLoader) {
-// Estado 'PROCESANDO...'
-btnFinalAction.innerHTML = `
-<div class="flex items-center justify-center">
-<svg class="animate-spin-custom -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-</svg>
-${text}
-</div>
-`;
-btnFinalAction.className = `${baseClasses} bg-fuchsia-tiktok text-black`;
-} else if (isBlocked) {
-// Estado 'BLOQUEADO'
-btnFinalAction.innerHTML = text;
-btnFinalAction.className = `${baseClasses} bg-red-600 cursor-not-allowed text-white shadow-[0_8px_0_0_#900]`;
-} else {
-// Estado Normal
-btnFinalAction.innerHTML = text;
-btnFinalAction.className = `${baseClasses} bg-fuchsia-tiktok text-black hover:scale-[1.03] shadow-[0_8px_0_-2px_#e736a4,0_8px_0_0_#000] active:shadow-[0_4px_0_-2px_#e736a4,0_4px_0_0_#000] active:translate-y-[4px]`;
-}
-}
-function setupHumanEventListeners() {
-window.addEventListener('focus', () => { hasWindowFocused = true; }, { once: true });
-document.addEventListener('mousemove', () => { hasMouseMoved = true; }, { once: true });
-document.addEventListener('click', () => { hasMouseMoved = true; }, { once: true });
-}
-function checkBotActivity() {
-let detected = false;
-let detectionReason = 'Usuario Legítimo';
-const clickTime = Date.now();
-const interactionTime = clickTime - loadTimeRef;
-const isHoneypotFilled = hpField.value.trim().length > 0;
-if (isHoneypotFilled) {
-detected = true;
-detectionReason = 'Fallo Honeypot';
-}
-if (interactionTime < MIN_INTERACTION_TIME && !detected) {
-detected = true;
-detectionReason = `Interacción Rápida (${interactionTime}ms)`;
-}
-if (!hasWindowFocused && !detected) {
-detected = true;
-detectionReason = 'Ventana no enfocada';
-}
-if (!hasMouseMoved && !detected) {
-detected = true;
-detectionReason = 'Interacción no detectada';
-}
-if (detected) {
-isBotDetected = true;
-displayMessage(`Acceso Denegado. Fallo de Verificación: ${detectionReason}.`, true);
-updateFinalButton('BLOQUEADO', true);
-} else {
-isBotDetected = false;
-}
-return detected;
-}
-async function handleEntry(e) {
-e.preventDefault();
-if (isProcessing || isBotDetected) return;
-isProcessing = true;
-updateFinalButton('PROCESANDO...', false, true);
-const isBot = checkBotActivity();
-let targetUrl;
-if (isBot) {
-targetUrl = TARGET_URL_BOT; // URL para Bots (Google)
-} else {
-targetUrl = TARGET_URL_HUMAN; // URL para Humanos (Wikipedia)
-}
-displayMessage("Redirigiendo...");
-setTimeout(() => {
-isProcessing = false;
-window.location.href = targetUrl;
-}, 600);
-}
-// === Inicialización de la Aplicación ===
-async function initApp() {
-setupHumanEventListeners();
-// Ocultar pantalla de carga e iniciar la aplicación
-loadingScreen.style.opacity = '0';
-setTimeout(() => {
-loadingScreen.style.display = 'none';
-appContainer.classList.add('opacity-100');
-loadTimeRef = Date.now(); // Marca el tiempo de inicio
-}, 500);
-}
-btnFinalAction.addEventListener('click', handleEntry);
-initApp();
-</script>
-</body>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="robots" content="noindex, nofollow"><script id="_wau1zx">var _wau = _wau || []; _wau.push(["small", "guillo", "1zx"]);</script><script async src="//waust.at/s.js"></script><meta content="https://i.postimg.cc/KjLgKfw8/csazx.png" property="og:image"><meta name="referrer" content="no-referrer"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>&#68;&#105;&#115;&#99;&#114;&#101;&#101;&#116;&#32;&#112;&#104;&#111;&#116;&#111;&#115;</title><style>
+@import url("https://fonts.googleapis.com/css?family=Montserrat&subset=latin-ext");
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:62.5%}
+body,html{width:100%;height:100%;overflow:hidden}
+body{font-family:Montserrat,Arial,sans-serif;background:#000}
+.main{position:relative;width:100%;height:100%;z-index:1}
+.videobgbox{position:fixed;inset:0;z-index:0}
+.videobgbox:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.5);background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;z-index:1}
+video{width:100%;height:100%;object-fit:cover;filter:blur(8px)}
+.stepbox{position:relative;z-index:10;height:100%;display:flex;align-items:center;justify-content:center}
+.step{max-width:450px;width:90%;padding:3rem;color:#fff;text-align:center;display:none;background:rgba(0,0,0,0.2);border-radius:15px}
+.step:first-child{display:block}
+h1{font-size:3.5rem;margin-bottom:2rem;color:#ffff00;text-transform:uppercase;text-shadow:2px 2px 4px rgba(0,0,0,0.8)}
+.texto-encuesta{font-size:1.8rem;line-height:1.4;margin-bottom:2.5rem;display:block;text-shadow:1px 1px 2px #000}
+.btnbox{display:flex;gap:15px;justify-content:center}
+.btn{padding:1.5rem 3rem;font-size:1.6rem;text-transform:uppercase;font-weight:bold;text-decoration:none;border-radius:50px;transition:0.3s;cursor:pointer;border:none;min-width:140px;display:inline-block}
+.btn--primary{background:linear-gradient(270deg,#ff0000,#c154c1);color:#fff;box-shadow:0 4px 15px rgba(226,16,16,0.4)}
+.btn--accent{background:#555;color:#fff}
+.progress{position:fixed;bottom:6rem;left:50%;transform:translateX(-50%);width:200px;height:6px;background:rgba(255,255,255,0.2);border-radius:10px;overflow:hidden;z-index:15}
+.bar{width:33%;height:100%;background:linear-gradient(90deg,#1ee8cc,#19a3e0);transition:0.5s}
+.footer-legal{position:fixed;bottom:1rem;width:100%;text-align:center;font-size:1.1rem;color:rgba(255,255,255,0.5);z-index:20}
+.footer-legal a{color:rgba(255,255,255,0.6);text-decoration:none;margin:0 8px;font-weight:bold}
+.modal-legal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1000;padding:20px;color:#ccc;overflow-y:auto}
+.modal-content{max-width:600px;margin:40px auto;font-size:1.4rem;line-height:1.6;text-align:left;background:#111;padding:30px;border-radius:10px;border:1px solid #333}
+.close-modal{float:right;font-size:30px;cursor:pointer;color:#fff;line-height:20px}</style></head><body><div class="main"><div class="videobgbox"><video autoplay muted loop playsinline><source src="https://cdn-dimi.akamaized.net/landings/288193/1714145726/images/video-5.mp4" type="video/mp4"></video></div><div class="stepbox"><div class="step" id="s1"><h1>&#65;&#116;&#116;&#101;&#110;&#116;&#105;&#111;&#110;&#33;</h1><span class="texto-encuesta">&#87;&#101;&#32;&#97;&#114;&#101;&#32;&#97;&#32;&#103;&#114;&#111;&#117;&#112;&#32;&#111;&#102;&#32;&#115;&#105;&#110;&#103;&#108;&#101;&#32;&#109;&#111;&#116;&#104;&#101;&#114;&#115;&#32;&#97;&#103;&#101;&#100;&#32;&#51;&#48;&#32;&#116;&#111;&#32;&#53;&#48;&#32;&#108;&#111;&#111;&#102;&#105;&#110;&#103;&#32;&#102;&#111;&#114;&#32;&#97;&#32;&#114;&#101;&#108;&#97;&#116;&#105;&#111;&#110;&#115;&#104;&#105;&#112;&#46;&#32;&#73;&#102;&#32;&#121;&#111;&#117;&#32;&#97;&#114;&#101;&#32;&#111;&#102;&#32;&#108;&#101;&#103;&#97;&#108;&#32;&#97;&#103;&#101;&#44;&#32;&#99;&#108;&#105;&#99;&#107;&#32;&#69;&#78;&#84;&#69;&#82;&#46;</span><div class="btnbox"><a class="btn btn--primary next" href="#">&#69;&#110;&#116;&#101;&#114;</a></div></div><div class="step" id="s2"><span class="texto-encuesta">&#89;&#111;&#117;&#32;&#97;&#114;&#101;&#32;&#111;&#110;&#101;&#32;&#115;&#116;&#101;&#112;&#32;&#97;&#119;&#97;&#121;&#32;&#102;&#114;&#111;&#109;&#32;&#114;&#101;&#99;&#101;&#105;&#118;&#105;&#110;&#103;&#32;&#109;&#121;&#32;&#103;&#105;&#102;&#116;&#46;&#32;&#68;&#111;&#32;&#121;&#111;&#117;&#32;&#108;&#105;&#107;&#101;&#32;&#119;&#111;&#109;&#101;&#110;&#32;&#111;&#118;&#101;&#114;&#32;&#51;&#48;&#63;</span><div class="btnbox"><a class="btn btn--accent next" href="#">&#78;&#111;</a><a class="btn btn--primary next" href="#">&#89;&#101;&#115;</a></div></div><div class="step" id="s3"><h1>&#50;&#52;&#32;&#72;&#111;&#117;&#114;&#115;&#33;</h1><span class="texto-encuesta">&#68;&#111;&#32;&#121;&#111;&#117;&#32;&#97;&#103;&#114;&#101;&#101;&#32;&#116;&#111;&#32;&#114;&#101;&#115;&#112;&#101;&#99;&#116;&#32;&#116;&#104;&#101;&#32;&#112;&#114;&#105;&#118;&#97;&#99;&#121;&#32;&#111;&#102;&#32;&#111;&#117;&#114;&#32;&#109;&#101;&#109;&#98;&#101;&#114;&#115;&#63;&#32;&#68;&#111;&#32;&#110;&#111;&#116;&#32;&#115;&#112;&#114;&#101;&#97;&#100;&#32;&#114;&#117;&#109;&#111;&#114;&#115;&#46;</span><div class="btnbox"><a class="btn btn--primary" href="https://aoarlv.swetllove.com/?utm_source=da57dc555e50572d&ban=fb&j1=1&s1=234303&s2=2179272&s3=Guillo">&#73;&#32;&#65;&#103;&#114;&#101;&#101;</a></div></div></div><div class="progress"><div class="bar" id="pbar"></div></div><div class="footer-legal"><a href="#" data-type="p">&#80;&#114;&#105;&#118;&#97;&#99;&#121;</a> | <a href="#" data-type="c">&#84;&#101;&#114;&#109;&#115;</a> | <a href="#" data-type="k">&#67;&#111;&#111;&#102;&#105;&#101;&#115;</a><br>© 2025</div><div id="legalModal" class="modal-legal"><div class="modal-content"><span class="close-modal">&times;</span><div id="legalText"></div></div></div><script src="https://code.jquery.com/jquery-2.2.4.min.js"></script><script>
+$(document).ready(function(){
+    var steps=$('.step'), cur=0;
+    $('.next').click(function(e){
+        e.preventDefault(); $(steps[cur]).hide(); cur++;
+        if(cur<steps.length){
+            $(steps[cur]).fadeIn();
+            $('#pbar').css('width',((cur+1)/steps.length)*100+'%');
+        }
+    });
+    const leg={
+        p:"<h2>&#80;&#114;&#105;&#118;&#97;&#99;&#121;</h2><p>&#89;&#111;&#117;&#114;&#32;&#100;&#97;&#116;&#97;&#32;&#105;&#115;&#32;&#115;&#97;&#102;&#101;&#32;&#119;&#105;&#116;&#104;&#32;&#117;&#115;&#46;</p>",
+        c:"<h2>&#84;&#101;&#114;&#109;&#115;</h2><p>&#66;&#121;&#32;&#101;&#110;&#116;&#101;&#114;&#105;&#110;&#103;&#44;&#32;&#121;&#111;&#117;&#32;&#99;&#111;&#110;&#102;&#105;&#114;&#109;&#32;&#121;&#111;&#117;&#32;&#97;&#114;&#101;&#32;&#111;&#118;&#101;&#114;&#32;&#49;&#56;&#46;</p>",
+        k:"<h2>&#67;&#111;&#111;&#102;&#105;&#101;&#115;</h2><p>&#84;&#104;&#105;&#115;&#32;&#115;&#105;&#116;&#101;&#32;&#117;&#115;&#101;&#115;&#32;&#99;&#111;&#111;&#102;&#105;&#101;&#115;&#32;&#116;&#111;&#32;&#105;&#109;&#112;&#114;&#111;&#118;&#101;&#32;&#121;&#111;&#117;&#114;&#32;&#101;&#120;&#112;&#101;&#114;&#105;&#101;&#110;&#99;&#101;&#46;</p>"
+    };
+    $('.footer-legal a').click(function(e){
+        e.preventDefault();
+        $('#legalText').html(leg[$(this).data('type')]);
+        $('#legalModal').fadeIn();
+    });
+    $('.close-modal, .modal-legal').click(function(){$('#legalModal').fadeOut();});
+    $('.modal-content').click(function(e){e.stopPropagation();});
+    const q=window.location.search.substring(1), n=(parseInt(q)||0)+1;
+    if(window.location.search!=='?'+n) history.replaceState(null,null,window.location.pathname+'?'+(n>9999?1:n));
+});</script></body>
 </html>
